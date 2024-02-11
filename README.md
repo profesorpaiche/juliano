@@ -11,3 +11,15 @@ as a reference.
 The code is divided into several branches just as a way to document the
 progress through each chapter of the book. In that sense, it has more of an
 educational purpose than a real-world application.
+
+## Part 1
+
+This part includes the implementation of the wave function in 1 dimension
+(longitude). Since the MJO has a positive and negative phase, I simulated two
+waves, one with negative value and 90° out of phase.
+
+Some details about the simulation:
+
+- Cyclic boundaries by simulating all longitudes (1° resolution)
+- A total of 45 days of simulation, which is one full MJO cycle
+- Simulation at hourly scales
