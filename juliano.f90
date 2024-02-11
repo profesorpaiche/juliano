@@ -5,10 +5,10 @@ program juliano
     ! General parameters for the setting
     integer :: i, n
     integer, parameter :: grid_size = 360 ! Longitude resolution [°]
-    integer, parameter :: num_time_steps = 100 ! Simulation length [day]
+    integer, parameter :: num_time_steps = 1080 ! Simulation length [hour] -> 45 days
     real, parameter :: dt = 1.0 ! Time step [day]
     real, parameter :: dx = 1.0 ! Grid spacing [°]
-    real, parameter :: c = 8.0  ! Background flow speed [°/day] -> one cycle every 45 days
+    real, parameter :: c = 0.333  ! Background flow speed [°/hour] -> one cycle every 45 days
     real :: h(grid_size), dh(grid_size)
 
     ! Gaussian parameters of the wave
@@ -16,7 +16,7 @@ program juliano
     ! NOTE: The wave is assumed to be Gaussian
     integer, parameter :: up_center = 180
     integer, parameter :: down_center = 90
-    real, parameter :: decay = 0.06
+    real, parameter :: decay = 0.001
 
     ! Checking some conditions
     if (grid_size <= 0) stop 'grid size must be > 0'
@@ -43,7 +43,7 @@ program juliano
             h(i) = h(i) - c * dh(i) / dx * dt
         end do
 
-        print *, n, h
+        if (mod(n, 10) == 0) print *, n, h
     end do time_loop
 
 end program juliano
